@@ -7,6 +7,6 @@
 #ifndef _M5CHAIN_H_
 #define _M5CHAIN_H_
 
-#include "Chain.hpp"
+#include "Chain/Chain.hpp"
 
 #endif  // _M5CHAIN_H_

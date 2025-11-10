@@ -7,9 +7,9 @@
 #ifndef _CHAIN_HPP_
 #define _CHAIN_HPP_
 
-#include "ChainCommon.hpp"
-#include "ChainJoystick.hpp"
-#include "ChainKey.hpp"
+#include "ChainCommon/ChainCommon.hpp"
+#include "ChainJoystick/ChainJoystick.hpp"
+#include "ChainKey/ChainKey.hpp"
 
 class Chain : virtual public ChainCommon,
               virtual public ChainJoystick,

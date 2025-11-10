@@ -7,7 +7,7 @@
 #ifndef _CHAIN_JOYSTICK_HPP_
 #define _CHAIN_JOYSTICK_HPP_
 
-#include <ChainCommon.hpp>
+#include <ChainCommon/ChainCommon.hpp>
 
 /**
  * @brief Size of the joystick map buffer.

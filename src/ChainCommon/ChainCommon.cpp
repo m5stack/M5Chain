@@ -4,7 +4,7 @@
  *SPDX-License-Identifier: MIT
  */
 
-#include "ChainCommon.hpp"
+#include "ChainCommon/ChainCommon.hpp"
 
 bool ChainCommon::acquireMutex(void)
 {

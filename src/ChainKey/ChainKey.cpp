@@ -4,7 +4,7 @@
  *SPDX-License-Identifier: MIT
  */
 
-#include "ChainKey.hpp"
+#include "ChainKey/ChainKey.hpp"
 
 chain_status_t ChainKey::getKeyButtonStatus(uint8_t id, uint8_t *buttonStatus, unsigned long timeout)
 {

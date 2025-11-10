@@ -4,7 +4,7 @@
  *SPDX-License-Identifier: MIT
  */
 
-#include "ChainJoystick.hpp"
+#include "ChainJoystick/ChainJoystick.hpp"
 
 chain_status_t ChainJoystick::getJoystick16Adc(uint8_t id, uint16_t *xAdcValue, uint16_t *yAdcValue,
                                                unsigned long timeout)
