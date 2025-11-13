@@ -1,48 +1,29 @@
-# Product Name
+# Chain Joystick
 
 ## Overview
+Chain Joystick is a high‑precision Hall‑effect joystick input node in the M5Stack Chain series.
+It supports three‑axis control signal input, including analog inputs for the X and Y axes and a digital button input for the Z axis.
+The device adopts a Hall‑effect joystick, which achieves high‑precision control by detecting changes in the magnetic field.
+It features a contactless design, high durability, excellent precision, and strong anti‑interference capability, ensuring product stability and long service life.
+An integrated programmable RGB LED is included for status indication and interactive display.
+It is suitable for applications such as human‑machine interaction and robot control.
 
-### SKU:xxx
-
-Description of the product
+### SKU: U205
 
 ## Related Link
+https://docs.m5stack.com/en/products/sku/U205
 
-- [Document & Datasheet](https://docs.m5stack.com/en/unit/product_Link)
-
-## Required Libraries:
-
-- [Adafruit_BMP280_Library](https://github.com/adafruit/Required_Libraries_Link)
-
-## License
-
-- [Product Name- MIT](LICENSE)
-
-## Remaining steps(Editorial Staff Look,After following the steps, remember to delete all the content below)
-
-1. Change [clang format check path](./.github/workflows/clang-format-check.yml#L42-L47).
-2. Add License content to [LICENSE](/LICENSE).
-3. Change link on line 78 of [bug-report.yml](./.github/ISSUE_TEMPLATE/bug-report.yml#L79).
-
-```cpp
-Example
-# M5Unit-ENV
+# Chain Key
 
 ## Overview
+Chain Key is a single‑button input node in the M5Stack Chain series.
+The button adopts a hot‑swappable mechanical keyboard switch design, featuring a tactile Blue switch with a distinct click feel, and also integrates a programmable RGB LED.
+It is suitable for applications such as human‑machine interaction and smart home control.
 
-### SKU:U001 & U001-B & U001-C
-
-Contains M5Stack-**UNIT ENV** series related case programs.ENV is an environmental sensor with integrated SHT30 and QMP6988 internally to detect temperature, humidity, and atmospheric pressure data.
+### SKU: U206
 
 ## Related Link
-
-- [Document & Datasheet](https://docs.m5stack.com/en/unit/envIII)
-
-## Required Libraries:
-
-- [Adafruit_BMP280_Library](https://github.com/adafruit/Adafruit_BMP280_Library)
+https://docs.m5stack.com/en/products/sku/U206
 
 ## License
-
-- [M5Unit-ENV - MIT](LICENSE)
-```
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)

@@ -7,7 +7,7 @@
 #ifndef _CHAIN_JOYSTICK_HPP_
 #define _CHAIN_JOYSTICK_HPP_
 
-#include <ChainCommon/ChainCommon.hpp>
+#include "ChainCommon/ChainCommon.hpp"
 
 /**
  * @brief Size of the joystick map buffer.
@@ -155,8 +155,8 @@ public:
      * @return Operation status code, e.g., CHAIN_OK for success, CHAIN_PARAMETER_ERROR for invalid parameters.
      */
     chain_status_t setJoystickButtonTriggerInterval(uint8_t id, button_double_click_time_t doubleClickIntervalMs,
-                                               button_long_press_time_t longPressIntervalMs, uint8_t *operationStatus,
-                                               unsigned long timeout = 100);
+                                                    button_long_press_time_t longPressIntervalMs,
+                                                    uint8_t *operationStatus, unsigned long timeout = 100);
 
     /**
      * @brief Get the double-click and long-press interval times for the joystick button device.
@@ -171,8 +171,8 @@ public:
      * @return Operation status code, e.g., CHAIN_OK for success, CHAIN_PARAMETER_ERROR for invalid parameters.
      */
     chain_status_t getJoystickButtonTriggerInterval(uint8_t id, button_double_click_time_t *doubleClickIntervalMs,
-                                               button_long_press_time_t *longPressIntervalMs,
-                                               unsigned long timeout = 100);
+                                                    button_long_press_time_t *longPressIntervalMs,
+                                                    unsigned long timeout = 100);
 
     /**
      * @brief Set the operating mode of the joystick button device.

@@ -26,7 +26,10 @@
       "-Isrc/Chain",
       "-Isrc/ChainCommon",
       "-Isrc/ChainJoystick",
-      "-Isrc/ChainKey"
+      "-Isrc/ChainKey",
+      "-Isrc/ChainEncoder",
+      "-Isrc/ChainAngle",
+      "-Isrc/ChainToF" 
     ]
   },
   "headers": [

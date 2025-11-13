@@ -10,10 +10,16 @@
 #include "ChainCommon/ChainCommon.hpp"
 #include "ChainJoystick/ChainJoystick.hpp"
 #include "ChainKey/ChainKey.hpp"
+#include "ChainAngle/ChainAngle.hpp"
+#include "ChainEncoder/ChainEncoder.hpp"
+#include "ChainToF/ChainToF.hpp"
 
 class Chain : virtual public ChainCommon,
               virtual public ChainJoystick,
-              virtual public ChainKey {
+              virtual public ChainKey,
+              virtual public ChainAngle,
+              virtual public ChainEncoder,
+              virtual public ChainToF {
 public:
 private:
 };

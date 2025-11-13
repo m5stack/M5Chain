@@ -7,7 +7,7 @@
 #ifndef _CHAIN_KEY_HPP_
 #define _CHAIN_KEY_HPP_
 
-#include <ChainCommon/ChainCommon.hpp>
+#include "ChainCommon/ChainCommon.hpp"
 
 class ChainKey : virtual public ChainCommon {
 public:
