@@ -147,34 +147,47 @@ void loop()
                 chain_button_mode_t button_mode;
                 chain_status = M5Chain.getJoystick16Adc(devices_list->devices[i].id, &xAdcValue, &yAdcValue);
                 if (chain_status == CHAIN_OK) {
-                    Serial.printf("JOYSTICK ID[%d] xAdcValue:%d, yAdcValue:%d \r\n", devices_list->devices[i].id, xAdcValue, yAdcValue);
+                    Serial.printf("JOYSTICK ID[%d] xAdcValue:%d, yAdcValue:%d \r\n", devices_list->devices[i].id,
+                                  xAdcValue, yAdcValue);
                 } else {
-                    Serial.printf("JOYSTICK ID[%d] get 16 adc value failed, chain_status:%d \r\n", devices_list->devices[i].id, chain_status);
+                    Serial.printf("JOYSTICK ID[%d] get 16 adc value failed, chain_status:%d \r\n",
+                                  devices_list->devices[i].id, chain_status);
                 }
                 chain_status = M5Chain.getJoystick8Adc(devices_list->devices[i].id, &xAdcValue8, &yAdcValue8);
                 if (chain_status == CHAIN_OK) {
-                    Serial.printf("JOYSTICK ID[%d] xAdcValue8:%d, yAdcValue8:%d \r\n", devices_list->devices[i].id, xAdcValue8, yAdcValue8);
+                    Serial.printf("JOYSTICK ID[%d] xAdcValue8:%d, yAdcValue8:%d \r\n", devices_list->devices[i].id,
+                                  xAdcValue8, yAdcValue8);
                 } else {
-                    Serial.printf("JOYSTICK ID[%d] get 8 adc value failed, chain_status:%d \r\n", devices_list->devices[i].id, chain_status);
+                    Serial.printf("JOYSTICK ID[%d] get 8 adc value failed, chain_status:%d \r\n",
+                                  devices_list->devices[i].id, chain_status);
                 }
 
                 chain_status = M5Chain.getJoystickMappedRange(devices_list->devices[i].id, mapRange, JOYSTICK_MAP_SIZE);
                 if (chain_status == CHAIN_OK) {
-                    Serial.printf("JOYSTICK ID[%d] mapRange:%d %d %d %d %d %d %d %d \r\n", devices_list->devices[i].id, mapRange[0], mapRange[1], mapRange[2], mapRange[3], mapRange[4], mapRange[5], mapRange[6], mapRange[7]);
+                    Serial.printf("JOYSTICK ID[%d] mapRange:%d %d %d %d %d %d %d %d \r\n", devices_list->devices[i].id,
+                                  mapRange[0], mapRange[1], mapRange[2], mapRange[3], mapRange[4], mapRange[5],
+                                  mapRange[6], mapRange[7]);
                 } else {
-                    Serial.printf("JOYSTICK ID[%d] get 16 adc map range failed, chain_status:%d \r\n", devices_list->devices[i].id, chain_status);
+                    Serial.printf("JOYSTICK ID[%d] get 16 adc map range failed, chain_status:%d \r\n",
+                                  devices_list->devices[i].id, chain_status);
                 }
-                chain_status = M5Chain.getJoystickMappedInt16Value(devices_list->devices[i].id, &xMapAdcValue, &yMapAdcValue);
+                chain_status =
+                    M5Chain.getJoystickMappedInt16Value(devices_list->devices[i].id, &xMapAdcValue, &yMapAdcValue);
                 if (chain_status == CHAIN_OK) {
-                    Serial.printf("JOYSTICK ID[%d] xMapAdcValue:%d, yMapAdcValue:%d \r\n", devices_list->devices[i].id, xMapAdcValue, yMapAdcValue);
+                    Serial.printf("JOYSTICK ID[%d] xMapAdcValue:%d, yMapAdcValue:%d \r\n", devices_list->devices[i].id,
+                                  xMapAdcValue, yMapAdcValue);
                 } else {
-                    Serial.printf("JOYSTICK ID[%d] get 16 adc map value failed, chain_status:%d \r\n", devices_list->devices[i].id, chain_status);
+                    Serial.printf("JOYSTICK ID[%d] get 16 adc map value failed, chain_status:%d \r\n",
+                                  devices_list->devices[i].id, chain_status);
                 }
-                chain_status = M5Chain.getJoystickMappedInt8Value(devices_list->devices[i].id, &xMapAdcValue8, &yMapAdcValue8);
+                chain_status =
+                    M5Chain.getJoystickMappedInt8Value(devices_list->devices[i].id, &xMapAdcValue8, &yMapAdcValue8);
                 if (chain_status == CHAIN_OK) {
-                    Serial.printf("JOYSTICK ID[%d] xMapAdcValue8:%d, yMapAdcValue8:%d \r\n", devices_list->devices[i].id, xMapAdcValue8, yMapAdcValue8);
+                    Serial.printf("JOYSTICK ID[%d] xMapAdcValue8:%d, yMapAdcValue8:%d \r\n",
+                                  devices_list->devices[i].id, xMapAdcValue8, yMapAdcValue8);
                 } else {
-                    Serial.printf("JOYSTICK ID[%d] get 8 adc map value failed, chain_status:%d \r\n", devices_list->devices[i].id, chain_status);
+                    Serial.printf("JOYSTICK ID[%d] get 8 adc map value failed, chain_status:%d \r\n",
+                                  devices_list->devices[i].id, chain_status);
                 }
 
                 chain_status = M5Chain.getJoystickButtonStatus(devices_list->devices[i].id, &button_status);

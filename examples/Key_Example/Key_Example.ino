@@ -102,12 +102,15 @@ void setup()
                     M5Chain.setKeyButtonTriggerInterval(devices_list->devices[i].id, BUTTON_DOUBLE_CLICK_TIME_200MS,
                                                         BUTTON_LONG_PRESS_TIME_3S, &operation_status);
                 if (chain_status == CHAIN_OK && operation_status) {
-                    Serial.printf("KEY ID[%d] set key button trigger interval success\r\n", devices_list->devices[i].id);
+                    Serial.printf("KEY ID[%d] set key button trigger interval success\r\n",
+                                  devices_list->devices[i].id);
                 } else {
-                    Serial.printf("KEY ID[%d] set key button trigger interval failed, chain_status:%d  operation_status:%d \r\n",
-                                  devices_list->devices[i].id, chain_status, operation_status);
+                    Serial.printf(
+                        "KEY ID[%d] set key button trigger interval failed, chain_status:%d  operation_status:%d \r\n",
+                        devices_list->devices[i].id, chain_status, operation_status);
                 }
-                chain_status = M5Chain.setKeyButtonMode(devices_list->devices[i].id, CHAIN_BUTTON_REPORT_MODE, &operation_status);
+                chain_status =
+                    M5Chain.setKeyButtonMode(devices_list->devices[i].id, CHAIN_BUTTON_REPORT_MODE, &operation_status);
                 if (chain_status == CHAIN_OK && operation_status) {
                     Serial.printf("KEY ID[%d] set key button mode success\r\n", devices_list->devices[i].id);
                 } else {
@@ -135,11 +138,11 @@ void loop()
                 if (chain_status == CHAIN_OK) {
                     Serial.printf("KEY ID[%d] button status:%d \r\n", devices_list->devices[i].id, button_status);
                 } else {
-                    Serial.printf("KEY ID[%d] get button status failed, chain_status:%d \r\n", devices_list->devices[i].id,
-                                  chain_status);    
+                    Serial.printf("KEY ID[%d] get button status failed, chain_status:%d \r\n",
+                                  devices_list->devices[i].id, chain_status);
                 }
-                chain_status = M5Chain.getKeyButtonTriggerInterval(devices_list->devices[i].id, &button_double_click_time,
-                                                                   &button_long_press_time);
+                chain_status = M5Chain.getKeyButtonTriggerInterval(devices_list->devices[i].id,
+                                                                   &button_double_click_time, &button_long_press_time);
                 if (chain_status == CHAIN_OK) {
                     Serial.printf("KEY ID[%d] button double click time:%d, button long press time:%d \r\n",
                                   devices_list->devices[i].id, button_double_click_time, button_long_press_time);

@@ -101,20 +101,24 @@ void setup()
 
                 // M5Chain.setAngleRotationDirection(devices_list->devices[i].id, ANGLE_ROTATION_DECREASING,
                 //                                   &operation_status,
-                //                                   CHAIN_SAVE_FLASH_ENABLE);  // Angle rotation direction decreasing, save to flash
+                //                                   CHAIN_SAVE_FLASH_ENABLE);  // Angle rotation direction decreasing,
+                //                                   save to flash
                 // M5Chain.setAngleRotationDirection(devices_list->devices[i].id, ANGLE_ROTATION_INCREASING,
                 //                                   &operation_status,
-                //                                   CHAIN_SAVE_FLASH_ENABLE);  // Angle rotation direction increasing, save to flash
+                //                                   CHAIN_SAVE_FLASH_ENABLE);  // Angle rotation direction increasing,
+                //                                   save to flash
                 // chain_status = M5Chain.setAngleRotationDirection(devices_list->devices[i].id,
                 // ANGLE_ROTATION_DECREASING,
                 //                                   &operation_status,
-                //                                   CHAIN_SAVE_FLASH_DISABLE);  // Angle rotation direction decreasing, not save to flash
-                M5Chain.setAngleRotationDirection(devices_list->devices[i].id, ANGLE_ROTATION_INCREASING,
-                                                  &operation_status,
-                                                  CHAIN_SAVE_FLASH_DISABLE);  // Angle rotation direction increasing, not save to flash
+                //                                   CHAIN_SAVE_FLASH_DISABLE);  // Angle rotation direction decreasing,
+                //                                   not save to flash
+                M5Chain.setAngleRotationDirection(
+                    devices_list->devices[i].id, ANGLE_ROTATION_INCREASING, &operation_status,
+                    CHAIN_SAVE_FLASH_DISABLE);  // Angle rotation direction increasing, not save to flash
 
                 if (chain_status == CHAIN_OK && operation_status) {
-                    Serial.printf("Angle ID[%d] set angle rotation direction success \r\n", devices_list->devices[i].id);
+                    Serial.printf("Angle ID[%d] set angle rotation direction success \r\n",
+                                  devices_list->devices[i].id);
                 } else {
                     Serial.printf(
                         "Angle ID[%d] set angle rotation direction failed, chain_status:%d  operation_status:%d \r\n",
@@ -139,8 +143,8 @@ void loop()
                 if (chain_status == CHAIN_OK) {
                     Serial.printf("Angle ID[%d] angle12Bit:%d \r\n", devices_list->devices[i].id, angle12Bit);
                 } else {
-                    Serial.printf("Angle ID[%d] get 12bit adc failed, chain_status:%d \r\n", devices_list->devices[i].id,
-                                  chain_status);
+                    Serial.printf("Angle ID[%d] get 12bit adc failed, chain_status:%d \r\n",
+                                  devices_list->devices[i].id, chain_status);
                 }
                 chain_status = M5Chain.getAngle8BitAdc(devices_list->devices[i].id, &angle8Bit);
                 if (chain_status == CHAIN_OK) {
