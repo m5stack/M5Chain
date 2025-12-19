@@ -29,7 +29,8 @@
       "-Isrc/ChainKey",
       "-Isrc/ChainEncoder",
       "-Isrc/ChainAngle",
-      "-Isrc/ChainToF" 
+      "-Isrc/ChainToF",
+      "-Isrc/UnitChainBus"
     ]
   },
   "headers": [

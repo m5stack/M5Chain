@@ -27,3 +27,33 @@ https://docs.m5stack.com/en/products/sku/U206
 
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain Encoder
+
+## Overview
+Chain Encoder is a rotary encoder input node in the M5Stack Chain series. It integrates an AB rotary encoder internally, supporting rotation direction detection and pulse counting, and the center of the knob supports button input. It also integrates a programmable RGB LED for status indication and interactive display. The encoder cap features LEGO-compatible mounting holes, enabling more creative structural connections. It is suitable for applications such as human–machine interaction and smart home control.
+
+Chain Encoder integrates the STM32G031G8U6 core controller and adopts a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can expand additional Chain series devices to build richer interactive applications.
+
+### SKU: U207
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U207
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain Angle
+
+## Overview
+Chain Angle is a potentiometer knob input node in the M5Stack Chain series. As the potentiometer knob rotates, the voltage value at the sampling terminal varies within a fixed range. After ADC conversion by the built-in MCU, a signal value with up to 12-bit resolution is output. It also integrates a programmable RGB LED for status indication and interactive display. It is suitable for applications such as human-machine interfaces, smart home systems, and motor speed control.
+
+Chain Angle integrates an STM32G031G8U6 core MCU and uses a UART serial cascade communication protocol. Through two HY2.0-4P expansion interfaces, more Chain series devices can be connected to build richer interactive applications.
+
+### SKU: U208
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U208
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
