@@ -7,7 +7,7 @@
 #ifndef _UNIT_CHAIN_BUS_HPP_
 #define _UNIT_CHAIN_BUS_HPP_
 
-#include <ChainCommon.hpp>
+#include "ChainCommon/ChainCommon.hpp"
 
 /**
  * @brief Maximum size for I2C read operations.
