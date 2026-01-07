@@ -49,7 +49,7 @@ chain_status_t UnitChainBus::chainBusI2cRead(uint8_t id, uint8_t i2cAddr, uint8_
         if (waitForData(id, CHAIN_I2C_READ, timeout)) {
             if (checkPacket(returnPacket, returnPacketSize)) {
                 *operationStatus = returnPacket[6];
-                if (returnPacket[6] == CHAIN_UART_OPERATION_SUCCESS) {
+                if (returnPacket[6] == CHAIN_BUS_OPERATION_SUCCESS) {
                     for (uint8_t i = 0; i < readLength; i++) {
                         buffer[i] = returnPacket[7 + i];
                     }
@@ -119,7 +119,7 @@ chain_status_t UnitChainBus::chainBusI2cMemRead(uint8_t id, uint8_t i2cAddr, uin
         if (waitForData(id, CHAIN_I2C_MEM_READ, timeout)) {
             if (checkPacket(returnPacket, returnPacketSize)) {
                 *operationStatus = returnPacket[6];
-                if (*operationStatus == CHAIN_UART_OPERATION_SUCCESS) {
+                if (*operationStatus == CHAIN_BUS_OPERATION_SUCCESS) {
                     for (uint8_t i = 0; i < readLength; i++) {
                         buffer[i] = returnPacket[7 + i];
                     }
@@ -183,7 +183,7 @@ chain_status_t UnitChainBus::getChainBusI2cScanAddr(uint8_t id, uint8_t *i2cAddr
         if (waitForData(id, CHAIN_I2C_SCAN_ADDR, timeout)) {
             if (checkPacket(returnPacket, returnPacketSize)) {
                 *operationStatus = returnPacket[6];
-                if (*operationStatus == CHAIN_UART_OPERATION_SUCCESS) {
+                if (*operationStatus == CHAIN_BUS_OPERATION_SUCCESS) {
                     *i2cAddrNums = returnPacket[7];
                     if (returnPacket[7] > size) {
                         status = CHAIN_PARAMETER_ERROR;
@@ -274,7 +274,7 @@ chain_status_t UnitChainBus::getChainBusOutputLevel(uint8_t id, gpio_pin_t gpio,
         if (waitForData(id, CHAIN_GPIO_READ_GPIO_LEVEL, timeout)) {
             if (checkPacket(returnPacket, returnPacketSize)) {
                 *operationStatus = returnPacket[6];
-                if (*operationStatus == CHAIN_UART_OPERATION_SUCCESS) {
+                if (*operationStatus == CHAIN_BUS_OPERATION_SUCCESS) {
                     *gpioLevel = (gpio_level_t)returnPacket[7];
                 }
             } else {
@@ -329,7 +329,7 @@ chain_status_t UnitChainBus::getChainBusInputLevel(uint8_t id, gpio_pin_t gpio, 
         if (waitForData(id, CHAIN_GPIO_READ_GPIO_LEVEL, timeout)) {
             if (checkPacket(returnPacket, returnPacketSize)) {
                 *operationStatus = returnPacket[6];
-                if (*operationStatus == CHAIN_UART_OPERATION_SUCCESS) {
+                if (*operationStatus == CHAIN_BUS_OPERATION_SUCCESS) {
                     *gpioLevel = returnPacket[7];
                 }
             } else {
@@ -426,7 +426,7 @@ chain_status_t UnitChainBus::getChainBusAdcValue(uint8_t id, gpio_pin_t gpio, ui
         if (waitForData(id, CHAIN_GPIO_ADC_READ, timeout)) {
             if (checkPacket(returnPacket, returnPacketSize)) {
                 *operationStatus = returnPacket[6];
-                if (*operationStatus == CHAIN_UART_OPERATION_SUCCESS) {
+                if (*operationStatus == CHAIN_BUS_OPERATION_SUCCESS) {
                     *value = (returnPacket[8] << 8) | returnPacket[7];
                 }
             } else {
