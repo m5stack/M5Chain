@@ -47,7 +47,7 @@ typedef enum {
 typedef enum {
     CHAIN_BUS_OPERATION_FAIL    = 0x00, /**< Operation failed. */
     CHAIN_BUS_OPERATION_SUCCESS = 0x01, /**< Operation successful. */
-    CHAIN_WORK_MODE_MISMATCHED   = 0x02, /**< Work mode mismatched. */
+    CHAIN_WORK_MODE_MISMATCHED  = 0x02, /**< Work mode mismatched. */
 } chain_uart_operation_t;
 
 /**
