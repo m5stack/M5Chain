@@ -4,7 +4,7 @@
  *SPDX-License-Identifier: MIT
  */
 
-#include "UnitChainBus.hpp"
+#include "UnitChainBus/UnitChainBus.hpp"
 
 chain_status_t UnitChainBus::setChainBusI2cMode(uint8_t id, i2c_speed_t i2cSpeed, uint8_t *operationStatus,
                                                 unsigned long timeout)

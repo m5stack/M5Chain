@@ -57,3 +57,31 @@ https://docs.m5stack.com/en/products/sku/U208
 
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain ToF
+
+## Overview
+Chain ToF is a laser ranging sensor node in the M5Stack Chain series. The device integrates a VL53L0C laser ranging module, supporting a distance measurement range of 3 ~ 200cm with an accuracy of ±3%. It is suitable for short-range non-contact distance measurement and object proximity detection applications. Chain ToF integrates an STM32G031G8U6 core MCU and adopts a UART daisy-chain communication protocol. With two HY2.0-4P expansion interfaces, it can be extended with additional Chain series devices to build richer interactive applications.
+
+### SKU: U209
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U209
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Unit ChainBus
+
+## Overview
+Unit ChainBus is a Chain series communication protocol conversion unit. It integrates an STM32G031G8U6 chip and uses a UART daisy-chain communication protocol to enable chained connections of multiple devices. It supports multiple protocol interface conversions, allowing various peripherals to be expanded on the same bus, and integrates hardware control and data interaction capabilities.
+
+The UART interfaces on the left and right sides are used to connect Chain series devices, supporting device UID query, version query, link device enumeration, heartbeat communication, and more. The top multifunction expansion interface can be used to extend Unit series devices, supporting I2C communication control, GPIO management (input and output), ADC sampling, and NVIC interrupt management. It is suitable for industrial control, IoT, smart home, and other application scenarios, providing an effective solution for unified control and data interaction of multiple devices.
+
+### SKU: U212
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U212
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
