@@ -25,7 +25,7 @@ void printWorkStatus(work_status_t gpio11_status, work_status_t gpio12_status);
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("M5Chain ToF Test");
+    Serial.println("M5Chain ChainBus Test");
     M5Chain.begin(&Serial2, 115200, RXD_PIN, TXD_PIN);
 
     if (M5Chain.isDeviceConnected()) {
@@ -87,10 +87,10 @@ void setup()
                     M5Chain.setChainBusOutputMode(devices_list->devices[i].id, CHAIN_GPIO_PIN_1,
                                                   CHAIN_GPIO_OUTPUT_PUSHPULL, CHAIN_GPIO_PULL_NO, &operation_status);
                 if (chain_status == CHAIN_OK && operation_status == 1) {
-                    Serial.printf("UART ID[%d] set gpio mode success \r\n", devices_list->devices[i].id);
+                    Serial.printf("Unit ChainBus ID[%d] set gpio mode success \r\n", devices_list->devices[i].id);
 
                 } else {
-                    Serial.printf("UART ID[%d] set gpio mode fail, chain_status:%d  operation_status:%d \r\n",
+                    Serial.printf("Unit ChainBus ID[%d] set gpio mode fail, chain_status:%d  operation_status:%d \r\n",
                                   devices_list->devices[i].id, chain_status, operation_status);
                 }
 
@@ -98,10 +98,10 @@ void setup()
                     M5Chain.setChainBusOutputMode(devices_list->devices[i].id, CHAIN_GPIO_PIN_2,
                                                   CHAIN_GPIO_OUTPUT_PUSHPULL, CHAIN_GPIO_PULL_NO, &operation_status);
                 if (chain_status == CHAIN_OK && operation_status == 1) {
-                    Serial.printf("UART ID[%d] set gpio mode success \r\n", devices_list->devices[i].id);
+                    Serial.printf("Unit ChainBus ID[%d] set gpio mode success \r\n", devices_list->devices[i].id);
 
                 } else {
-                    Serial.printf("UART ID[%d] set gpio mode fail, chain_status:%d  operation_status:%d \r\n",
+                    Serial.printf("Unit ChainBus ID[%d] set gpio mode fail, chain_status:%d  operation_status:%d \r\n",
                                   devices_list->devices[i].id, chain_status, operation_status);
                 }
             }
@@ -128,11 +128,11 @@ void loop()
                         chain_status = M5Chain.getChainBusOutputLevel(devices_list->devices[i].id, CHAIN_GPIO_PIN_1,
                                                                       &gpio1_status, &operation_status);
                         if (chain_status == CHAIN_OK && operation_status == 1) {
-                            Serial.printf("UART ID[%d] gpio1 status: %d \r\n", devices_list->devices[i].id,
+                            Serial.printf("Unit ChainBus ID[%d] gpio1 status: %d \r\n", devices_list->devices[i].id,
                                           gpio1_status);
                         } else {
                             Serial.printf(
-                                "UART ID[%d] get gpio1 status fail, chain_status:%d  operation_status:%d \r\n",
+                                "Unit ChainBus ID[%d] get gpio1 status fail, chain_status:%d  operation_status:%d \r\n",
                                 devices_list->devices[i].id, chain_status, operation_status);
                         }
                         M5Chain.setChainBusOutputLevel(devices_list->devices[i].id, CHAIN_GPIO_PIN_1,
@@ -143,11 +143,11 @@ void loop()
                         chain_status = M5Chain.getChainBusOutputLevel(devices_list->devices[i].id, CHAIN_GPIO_PIN_2,
                                                                       &gpio2_status, &operation_status);
                         if (chain_status == CHAIN_OK && operation_status == 1) {
-                            Serial.printf("UART ID[%d] gpio2 status: %d \r\n", devices_list->devices[i].id,
+                            Serial.printf("Unit ChainBus ID[%d] gpio2 status: %d \r\n", devices_list->devices[i].id,
                                           gpio2_status);
                         } else {
                             Serial.printf(
-                                "UART ID[%d] get gpio2 status fail, chain_status:%d  operation_status:%d \r\n",
+                                "Unit ChainBus ID[%d] get gpio2 status fail, chain_status:%d  operation_status:%d \r\n",
                                 devices_list->devices[i].id, chain_status, operation_status);
                         }
                         M5Chain.setChainBusOutputLevel(devices_list->devices[i].id, CHAIN_GPIO_PIN_2,
@@ -155,7 +155,7 @@ void loop()
                     }
                 }
             } else {
-                Serial.printf("UART ID[%d] get work mode fail, chain_status:%d  operation_status:%d \r\n",
+                Serial.printf("Unit ChainBus ID[%d] get work mode fail, chain_status:%d  operation_status:%d \r\n",
                               devices_list->devices[i].id, chain_status, operation_status);
             }
         }

@@ -25,7 +25,7 @@ void printWorkStatus(work_status_t gpio11_status, work_status_t gpio12_status);
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("M5Chain ToF Test");
+    Serial.println("M5Chain ChainBus Test");
     M5Chain.begin(&Serial2, 115200, RXD_PIN, TXD_PIN);
 
     if (M5Chain.isDeviceConnected()) {
@@ -87,9 +87,9 @@ void setup()
                     M5Chain.setChainBusNvicMode(devices_list->devices[i].id, CHAIN_GPIO_PIN_1, CHAIN_GPIO_PULL_UP,
                                                 CHAIN_GPIO_MODE_IT_RISING_FALLING, &operation_status);
                 if (chain_status == CHAIN_OK && operation_status == 1) {
-                    Serial.printf("UART ID[%d] set nvic mode success \r\n", devices_list->devices[i].id);
+                    Serial.printf("Unit ChainBus ID[%d] set nvic mode success \r\n", devices_list->devices[i].id);
                 } else {
-                    Serial.printf("UART ID[%d] set nvic mode fail, chain_status:%d  operation_status:%d \r\n",
+                    Serial.printf("Unit ChainBus ID[%d] set nvic mode fail, chain_status:%d  operation_status:%d \r\n",
                                   devices_list->devices[i].id, chain_status, operation_status);
                 }
 
@@ -97,9 +97,9 @@ void setup()
                     M5Chain.setChainBusNvicMode(devices_list->devices[i].id, CHAIN_GPIO_PIN_2, CHAIN_GPIO_PULL_UP,
                                                 CHAIN_GPIO_MODE_IT_RISING_FALLING, &operation_status);
                 if (chain_status == CHAIN_OK && operation_status == 1) {
-                    Serial.printf("UART ID[%d] set nvic mode success \r\n", devices_list->devices[i].id);
+                    Serial.printf("Unit ChainBus ID[%d] set nvic mode success \r\n", devices_list->devices[i].id);
                 } else {
-                    Serial.printf("UART ID[%d] set nvic mode fail, chain_status:%d  operation_status:%d \r\n",
+                    Serial.printf("Unit ChainBus ID[%d] set nvic mode fail, chain_status:%d  operation_status:%d \r\n",
                                   devices_list->devices[i].id, chain_status, operation_status);
                 }
             }
@@ -125,13 +125,13 @@ void loop()
                         uint16_t nvic_status = 0;
                         while (M5Chain.getChainBusNvicTriggerStatus(devices_list->devices[i].id, &nvic_status)) {
                             Serial.println("**********************************");
-                            Serial.printf("UART ID[%d] nvic status: 0x%04x \r\n", devices_list->devices[i].id,
+                            Serial.printf("Unit ChainBus ID[%d] nvic status: 0x%04x \r\n", devices_list->devices[i].id,
                                           nvic_status);
                         }
                     }
                 }
             } else {
-                Serial.printf("UART ID[%d] get work mode fail, chain_status:%d  operation_status:%d \r\n",
+                Serial.printf("Unit ChainBus ID[%d] get work mode fail, chain_status:%d  operation_status:%d \r\n",
                               devices_list->devices[i].id, chain_status, operation_status);
             }
         }

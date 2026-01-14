@@ -25,7 +25,7 @@ void printWorkStatus(work_status_t gpio11_status, work_status_t gpio12_status);
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("M5Chain ToF Test");
+    Serial.println("M5Chain ChainBus Test");
     M5Chain.begin(&Serial2, 115200, RXD_PIN, TXD_PIN);
 
     if (M5Chain.isDeviceConnected()) {
@@ -86,18 +86,18 @@ void setup()
                 chain_status =
                     M5Chain.setChainBusAdcMode(devices_list->devices[i].id, CHAIN_GPIO_PIN_1, &operation_status);
                 if (chain_status == CHAIN_OK && operation_status == 1) {
-                    Serial.printf("UART ID[%d] set adc mode success \r\n", devices_list->devices[i].id);
+                    Serial.printf("Unit ChainBus ID[%d] set adc mode success \r\n", devices_list->devices[i].id);
                 } else {
-                    Serial.printf("UART ID[%d] set adc mode fail, chain_status:%d  operation_status:%d \r\n",
+                    Serial.printf("Unit ChainBus ID[%d] set adc mode fail, chain_status:%d  operation_status:%d \r\n",
                                   devices_list->devices[i].id, chain_status, operation_status);
                 }
 
                 chain_status =
                     M5Chain.setChainBusAdcMode(devices_list->devices[i].id, CHAIN_GPIO_PIN_2, &operation_status);
                 if (chain_status == CHAIN_OK && operation_status == 1) {
-                    Serial.printf("UART ID[%d] set adc mode success \r\n", devices_list->devices[i].id);
+                    Serial.printf("Unit ChainBus ID[%d] set adc mode success \r\n", devices_list->devices[i].id);
                 } else {
-                    Serial.printf("UART ID[%d] set adc mode fail, chain_status:%d  operation_status:%d \r\n",
+                    Serial.printf("Unit ChainBus ID[%d] set adc mode fail, chain_status:%d  operation_status:%d \r\n",
                                   devices_list->devices[i].id, chain_status, operation_status);
                 }
             }
@@ -124,11 +124,12 @@ void loop()
                         chain_status        = M5Chain.getChainBusAdcValue(devices_list->devices[i].id, CHAIN_GPIO_PIN_1,
                                                                           &adc_buffer, &operation_status);
                         if (chain_status == CHAIN_OK && operation_status == 1) {
-                            Serial.printf("UART ID[%d] adc channel 1 value: %d \r\n", devices_list->devices[i].id,
-                                          adc_buffer);
+                            Serial.printf("Unit ChainBus ID[%d] adc channel 1 value: %d \r\n",
+                                          devices_list->devices[i].id, adc_buffer);
                         } else {
                             Serial.printf(
-                                "UART ID[%d] get adc channel 1 value fail, chain_status:%d  operation_status:%d "
+                                "Unit ChainBus ID[%d] get adc channel 1 value fail, chain_status:%d  "
+                                "operation_status:%d "
                                 "\r\n",
                                 devices_list->devices[i].id, chain_status, operation_status);
                         }
@@ -139,18 +140,19 @@ void loop()
                         chain_status        = M5Chain.getChainBusAdcValue(devices_list->devices[i].id, CHAIN_GPIO_PIN_2,
                                                                           &adc_buffer, &operation_status);
                         if (chain_status == CHAIN_OK && operation_status == 1) {
-                            Serial.printf("UART ID[%d] adc channel 2 value: %d \r\n", devices_list->devices[i].id,
-                                          adc_buffer);
+                            Serial.printf("Unit ChainBus ID[%d] adc channel 2 value: %d \r\n",
+                                          devices_list->devices[i].id, adc_buffer);
                         } else {
                             Serial.printf(
-                                "UART ID[%d] get adc channel 2 value fail, chain_status:%d  operation_status:%d "
+                                "Unit ChainBus ID[%d] get adc channel 2 value fail, chain_status:%d  "
+                                "operation_status:%d "
                                 "\r\n",
                                 devices_list->devices[i].id, chain_status, operation_status);
                         }
                     }
                 }
             } else {
-                Serial.printf("UART ID[%d] get work mode fail, chain_status:%d  operation_status:%d \r\n",
+                Serial.printf("Unit ChainBus ID[%d] get work mode fail, chain_status:%d  operation_status:%d \r\n",
                               devices_list->devices[i].id, chain_status, operation_status);
             }
         }

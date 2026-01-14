@@ -25,7 +25,7 @@ void printWorkStatus(work_status_t gpio11_status, work_status_t gpio12_status);
 void setup()
 {
     Serial.begin(115200);
-    Serial.println("M5Chain ToF Test");
+    Serial.println("M5Chain ChainBus Test");
     M5Chain.begin(&Serial2, 115200, RXD_PIN, TXD_PIN);
 
     if (M5Chain.isDeviceConnected()) {
@@ -85,9 +85,9 @@ void setup()
                 chain_status = M5Chain.setChainBusI2cMode(devices_list->devices[i].id, CHAIN_I2C_HIGH_SPEED_400KHZ,
                                                           &operation_status);
                 if (chain_status == CHAIN_OK && operation_status == 1) {
-                    Serial.printf("UART ID[%d] set i2c mode success \r\n", devices_list->devices[i].id);
+                    Serial.printf("Unit ChainBus ID[%d] set i2c mode success \r\n", devices_list->devices[i].id);
                 } else {
-                    Serial.printf("UART ID[%d] set i2c mode fail, chain_status:%d  operation_status:%d \r\n",
+                    Serial.printf("Unit ChainBus ID[%d] set i2c mode fail, chain_status:%d  operation_status:%d \r\n",
                                   devices_list->devices[i].id, chain_status, operation_status);
                 }
             }
@@ -117,21 +117,22 @@ void loop()
                                                            i2c_scan_addr, sizeof(i2c_scan_addr), &operation_status);
                         if (chain_status == CHAIN_OK && operation_status == 1) {
                             if (operation_status == 1) {
-                                Serial.printf("UART ID[%d] scan i2c device success, num: %d \r\n",
+                                Serial.printf("Unit ChainBus ID[%d] scan i2c device success, num: %d \r\n",
                                               devices_list->devices[i].id, i2c_scan_addr_num);
                                 for (uint8_t j = 0; j < i2c_scan_addr_num; j++) {
-                                    Serial.printf("UART ID[%d] i2c addr%d:0x%02x \r\n", devices_list->devices[i].id, j,
-                                                  i2c_scan_addr[j]);
+                                    Serial.printf("Unit ChainBus ID[%d] i2c addr%d:0x%02x \r\n",
+                                                  devices_list->devices[i].id, j, i2c_scan_addr[j]);
                                 }
                             }
                         } else {
                             Serial.printf(
-                                "UART ID[%d] get i2c scan addr fail, chain_status:%d  operation_status:%d \r\n",
+                                "Unit ChainBus ID[%d] get i2c scan addr fail, chain_status:%d  operation_status:%d "
+                                "\r\n",
                                 devices_list->devices[i].id, chain_status, operation_status);
                         }
                     }
                 } else {
-                    Serial.printf("UART ID[%d] get work mode fail, chain_status:%d  operation_status:%d \r\n",
+                    Serial.printf("Unit ChainBus ID[%d] get work mode fail, chain_status:%d  operation_status:%d \r\n",
                                   devices_list->devices[i].id, chain_status, operation_status);
                 }
             }
