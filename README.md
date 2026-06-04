@@ -85,3 +85,16 @@ https://docs.m5stack.com/en/products/sku/U212
 
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain Mono
+
+## Overview
+Chain Mono is an LED display node in the M5Stack Chain series, featuring an 8×8 monochrome LED dot-matrix unit. The device supports individual pixel control, batch pixel writing, and fast full-screen buffer refresh. It includes built-in ASCII character drawing mapping, string scrolling, brightness adjustment, and multi-angle screen rotation, enabling a variety of dynamic lighting and pixel animation effects. Suitable for pixel light art, desktop ambient lighting, creative light signs, and smart device light indicators. Chain Mono integrates an STM32G031G8U6 main controller and uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can connect additional Chain series devices to build richer interactive applications.
+
+### SKU: U217
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U217
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)

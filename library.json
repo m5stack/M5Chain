@@ -1,6 +1,6 @@
 {
   "name": "M5Chain",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Arduino library for M5Stack Chain devices, including Chain Joystick and Chain Key modules.",
   "keywords": [
     "M5Stack",
@@ -10,7 +10,8 @@
     "Encoder",
     "Angle",
     "ToF",
-    "ChainBus"
+    "ChainBus",
+    "ChainMono"
   ],
   "repository": {
     "type": "git",
@@ -34,7 +35,8 @@
       "-Isrc/ChainEncoder",
       "-Isrc/ChainAngle",
       "-Isrc/ChainToF",
-      "-Isrc/UnitChainBus"
+      "-Isrc/UnitChainBus",
+      "-Isrc/ChainMono"
     ]
   },
   "headers": [

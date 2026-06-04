@@ -14,6 +14,7 @@
 #include "ChainEncoder/ChainEncoder.hpp"
 #include "ChainToF/ChainToF.hpp"
 #include "UnitChainBus/UnitChainBus.hpp"
+#include "ChainMono/ChainMono.hpp"
 
 class Chain : virtual public ChainCommon,
               virtual public ChainJoystick,
@@ -21,7 +22,8 @@ class Chain : virtual public ChainCommon,
               virtual public ChainAngle,
               virtual public ChainEncoder,
               virtual public ChainToF,
-              virtual public UnitChainBus {
+              virtual public UnitChainBus,
+              virtual public ChainMono {
 public:
 private:
 };
