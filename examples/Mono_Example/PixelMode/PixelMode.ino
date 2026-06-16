@@ -122,7 +122,7 @@ void loop()
                         chain_status = M5Chain.setMonoPixel(devices_list->devices[i].id, k, j, true, &operation_status);
                         if (chain_status == CHAIN_OK && operation_status == 1) {
                             Serial.printf("MONO ID[%d] set pixel success, x:%d, y:%d\r\n", devices_list->devices[i].id,
-                                          j, k);
+                                          k, j);
                         } else {
                             Serial.printf("MONO ID[%d] set pixel failed, chain_status:%d  operation_status:%d \r\n",
                                           devices_list->devices[i].id, chain_status, operation_status);

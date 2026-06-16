@@ -98,3 +98,18 @@ https://docs.m5stack.com/en/products/sku/U217
 
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain RGB
+
+## Overview
+Chain RGB is an RGB LED display node in the M5Stack Chain series, equipped with an 8×8 RGB LED matrix unit. The device supports independent pixel control, batch pixel writing, and fast full-screen buffer refresh. It also features built-in ASCII character rendering, scrolling text, brightness adjustment, and multi-angle screen rotation, enabling colorful dynamic lighting effects and pixel animations. It is suitable for pixel lighting creation, desktop ambient lighting, creative illuminated signage, smart device light notifications, and more.
+
+Chain RGB integrates an STM32G031G8U6 core microcontroller and uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion ports, it can be extended with additional Chain series devices to build richer interactive applications.
+
+### SKU: U218
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U218
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)

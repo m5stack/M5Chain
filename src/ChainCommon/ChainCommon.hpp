@@ -190,6 +190,7 @@ typedef enum {
     // CHAIN_BUZZER_TYPE_CODE   = 0x000B, /**< Buzzer device type. */
     // UNIT_8SERVOS2_CHAIN_TYPE_CODE = 0x000C, /**< Unit 8Servos2 Chain device type. */
     CHAIN_MONO_TYPE_CODE = 0x000D, /**< Mono device type. */
+    CHAIN_RGB_TYPE_CODE  = 0x000E, /**< RGB device type. */
 } chain_device_type_t;
 
 /**
