@@ -16,6 +16,8 @@
 #include "UnitChainBus/UnitChainBus.hpp"
 #include "ChainMono/ChainMono.hpp"
 #include "ChainRGB/ChainRGB.hpp"
+#include "ChainPIR/ChainPIR.hpp"
+#include "ChainSwitch/ChainSwitch.hpp"
 
 class Chain : virtual public ChainCommon,
               virtual public ChainJoystick,
@@ -25,7 +27,9 @@ class Chain : virtual public ChainCommon,
               virtual public ChainToF,
               virtual public UnitChainBus,
               virtual public ChainMono,
-              virtual public ChainRGB {
+              virtual public ChainRGB,
+              virtual public ChainPIR,
+              virtual public ChainSwitch {
 public:
 private:
 };

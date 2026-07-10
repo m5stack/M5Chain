@@ -1,6 +1,6 @@
 {
   "name": "M5Chain",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Arduino library for M5Stack Chain devices.",
   "keywords": [
     "M5Stack",
@@ -12,7 +12,9 @@
     "ToF",
     "ChainBus",
     "ChainMono",
-    "ChainRGB"
+    "ChainRGB",
+    "ChainPIR",
+    "ChainSwitch"
   ],
   "repository": {
     "type": "git",
@@ -25,9 +27,13 @@
     }
   ],
   "license": "MIT",
-  "frameworks": ["arduino"],
+  "frameworks": [
+    "arduino"
+  ],
   "build": {
-    "srcFilter": ["+<*>"],
+    "srcFilter": [
+      "+<*>"
+    ],
     "flags": [
       "-Isrc/Chain",
       "-Isrc/ChainCommon",
@@ -38,7 +44,9 @@
       "-Isrc/ChainToF",
       "-Isrc/UnitChainBus",
       "-Isrc/ChainMono",
-      "-Isrc/ChainRGB"
+      "-Isrc/ChainRGB",
+      "-Isrc/ChainPIR",
+      "-Isrc/ChainSwitch"
     ]
   },
   "headers": [
