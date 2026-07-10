@@ -113,3 +113,33 @@ https://docs.m5stack.com/en/products/sku/U218
 
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain PIR
+
+## Overview
+Chain PIR is a passive infrared human detection sensor node in the M5Stack Chain series. It can read the current PIR detection status and report person-come or person-leave trigger events. It also supports report mode configuration and a person-come trigger keep time, during which leave events are ignored until the hold time expires.
+
+Chain PIR integrates an STM32G031G8U6 core MCU and uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can be connected with additional Chain series devices to build richer sensing and automation applications. It is suitable for human presence detection, motion-triggered interaction, smart home sensing, and security monitoring scenarios.
+
+### SKU: U225
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U225
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain Switch
+
+## Overview
+Chain Switch is a slide switch input node in the M5Stack Chain series. It supports reading 12-bit ADC values, 8-bit mapped ADC values, and the current open/close switch status. It also supports configurable open and close thresholds, down-to-up direction settings, and automatic open/close trigger reports.
+
+Chain Switch integrates an STM32G031G8U6 core MCU and uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can be connected with additional Chain series devices to build richer interactive applications. It is suitable for switch state detection, human-machine interaction, smart home control, and other state monitoring scenarios.
+
+### SKU: U227
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U227
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
