@@ -143,3 +143,16 @@ https://docs.m5stack.com/en/products/sku/U227
 
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Unit 8Servos2 Chain
+
+## Overview
+Unit 8Servos2 Chain is an 8-channel multifunction output node in the M5Stack Chain series. It supports GPIO input and output, ADC sampling, servo angle control, RGB LED buffer control, PWM duty configuration, and voltage/current monitoring through the Chain UART daisy-chain protocol. It is suitable for robot control, smart toys, servo expansion, and mixed GPIO/PWM interaction applications.
+
+### SKU: U223
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U223
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)

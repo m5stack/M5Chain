@@ -1,6 +1,6 @@
 {
   "name": "M5Chain",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Arduino library for M5Stack Chain devices.",
   "keywords": [
     "M5Stack",
@@ -14,7 +14,8 @@
     "ChainMono",
     "ChainRGB",
     "ChainPIR",
-    "ChainSwitch"
+    "ChainSwitch",
+    "Unit8Servos2Chain"
   ],
   "repository": {
     "type": "git",
@@ -46,7 +47,8 @@
       "-Isrc/ChainMono",
       "-Isrc/ChainRGB",
       "-Isrc/ChainPIR",
-      "-Isrc/ChainSwitch"
+      "-Isrc/ChainSwitch",
+      "-Isrc/Unit8Servos2Chain"
     ]
   },
   "headers": [
