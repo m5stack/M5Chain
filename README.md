@@ -114,6 +114,34 @@ https://docs.m5stack.com/en/products/sku/U218
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
 
+# Unit 8Servos2 Chain
+
+## Overview
+Unit 8Servos2 Chain is an 8-channel multifunction output node in the M5Stack Chain series. It supports GPIO input and output, ADC sampling, servo angle control, RGB LED buffer control, PWM duty configuration, and voltage/current monitoring through the Chain UART daisy-chain protocol. It is suitable for robot control, smart toys, servo expansion, and mixed GPIO/PWM interaction applications.
+
+### SKU: U223
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U223
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain Buzzer
+
+## Overview
+Chain Buzzer is a buzzer output node in the M5Stack Chain series. It supports automatic tone playback, manual on/off control, configurable frequency and duty cycle, and note playback using built-in musical note indexes.
+
+Chain Buzzer integrates an STM32G031G8U6 core MCU and uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can be connected with additional Chain series devices to build richer sound feedback and alert applications. It is suitable for status prompts, alarms, interaction feedback, rhythm playback, and simple melody output scenarios.
+
+### SKU: U224
+
+## Related Link
+https://docs.m5stack.com/en/chain/sku/U224
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
 # Chain PIR
 
 ## Overview
@@ -129,6 +157,22 @@ https://docs.m5stack.com/en/products/sku/U225
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
 
+# Chain MIC
+
+## Overview
+Chain MIC is a microphone input node in the M5Stack Chain series. It supports reading 12-bit ADC values and 8-bit mapped ADC values from the microphone signal, and provides configurable threshold detection with active trigger reports for low-threshold and high-threshold events.
+
+Chain MIC integrates an STM32G031G8U6 core MCU and uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can be connected with additional Chain series devices to build richer sound sensing and interactive applications. It is suitable for sound level detection, audio-triggered interaction, smart device sensing, and simple acoustic event monitoring scenarios.
+
+### SKU: U226
+
+## Related Link
+https://docs.m5stack.com/en/chain/sku/U226
+
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
 # Chain Switch
 
 ## Overview
@@ -140,19 +184,6 @@ Chain Switch integrates an STM32G031G8U6 core MCU and uses a UART serial daisy-c
 
 ## Related Link
 https://docs.m5stack.com/en/products/sku/U227
-
-## License
-- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
-
-# Unit 8Servos2 Chain
-
-## Overview
-Unit 8Servos2 Chain is an 8-channel multifunction output node in the M5Stack Chain series. It supports GPIO input and output, ADC sampling, servo angle control, RGB LED buffer control, PWM duty configuration, and voltage/current monitoring through the Chain UART daisy-chain protocol. It is suitable for robot control, smart toys, servo expansion, and mixed GPIO/PWM interaction applications.
-
-### SKU: U223
-
-## Related Link
-https://docs.m5stack.com/en/products/sku/U223
 
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
