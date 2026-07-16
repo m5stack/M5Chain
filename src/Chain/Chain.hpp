@@ -18,6 +18,8 @@
 #include "ChainRGB/ChainRGB.hpp"
 #include "ChainPIR/ChainPIR.hpp"
 #include "ChainSwitch/ChainSwitch.hpp"
+#include "ChainMIC/ChainMIC.hpp"
+#include "ChainBuzzer/ChainBuzzer.hpp"
 #include "Unit8Servos2Chain/Unit8Servos2Chain.hpp"
 
 class Chain : virtual public ChainCommon,
@@ -31,6 +33,8 @@ class Chain : virtual public ChainCommon,
               virtual public ChainRGB,
               virtual public ChainPIR,
               virtual public ChainSwitch,
+              virtual public ChainMIC,
+              virtual public ChainBuzzer,
               virtual public Unit8Servos2Chain {
 public:
 private:
