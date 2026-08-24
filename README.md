@@ -187,3 +187,48 @@ https://docs.m5stack.com/en/products/sku/U227
 
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain ENV
+
+## Overview
+Chain ENV is an environmental sensing node in the M5Stack Chain series. It integrates AHT20 and SPA06 sensors to measure temperature, relative humidity, atmospheric pressure, and altitude. It supports configurable SPA06 sampling rates and sea-level pressure, as well as threshold-based event reporting for environmental changes.
+
+Chain ENV uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can be connected with additional Chain series devices to build environmental monitoring and automation applications. It is suitable for weather stations, indoor environment monitoring, smart agriculture, and altitude-aware devices.
+
+### SKU: U234
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U234
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain IMU
+
+## Overview
+Chain IMU is a six-axis motion sensing node in the M5Stack Chain series. It provides three-axis acceleration, three-axis angular velocity, raw sensor data, and sensor temperature. It supports configurable measurement ranges and output data rates, together with threshold-based event reporting for acceleration, angular velocity, and temperature changes.
+
+Chain IMU uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can be connected with additional Chain series devices to build motion sensing and control applications. It is suitable for attitude detection, robot motion monitoring, gesture interaction, and vibration sensing.
+
+### SKU: U235
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U235
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain DLight
+
+## Overview
+Chain DLight is a digital ambient light sensing node in the M5Stack Chain series. It measures illuminance in lux and supports configurable sensor gain, resolution, and measurement rate. It also provides high and low illuminance thresholds with automatic event reporting for light-level changes.
+
+Chain DLight uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can be connected with additional Chain series devices to build light sensing and automation applications. It is suitable for ambient light monitoring, automatic lighting control, display brightness adjustment, and smart home systems.
+
+### SKU: U236
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U236
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
