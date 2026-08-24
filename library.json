@@ -1,6 +1,6 @@
 {
   "name": "M5Chain",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Arduino library for M5Stack Chain devices.",
   "keywords": [
     "M5Stack",
@@ -17,7 +17,10 @@
     "ChainSwitch",
     "MIC",
     "Buzzer",
-    "Unit8Servos2Chain"
+    "Unit8Servos2Chain",
+    "DLight",
+    "ENV",
+    "IMU"
   ],
   "repository": {
     "type": "git",
@@ -52,7 +55,10 @@
       "-Isrc/ChainSwitch",
       "-Isrc/ChainMIC",
       "-Isrc/ChainBuzzer",
-      "-Isrc/Unit8Servos2Chain"
+      "-Isrc/Unit8Servos2Chain",
+      "-Isrc/ChainDLight",
+      "-Isrc/ChainENV",
+      "-Isrc/ChainIMU"
     ]
   },
   "headers": [

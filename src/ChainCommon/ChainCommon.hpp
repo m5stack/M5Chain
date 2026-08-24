@@ -191,6 +191,9 @@ typedef enum {
     UNIT_8SERVOS2_CHAIN_TYPE_CODE = 0x000C, /**< Unit 8Servos2 Chain device type. */
     CHAIN_MONO_TYPE_CODE          = 0x000D, /**< Mono device type. */
     CHAIN_RGB_TYPE_CODE           = 0x000E, /**< RGB device type. */
+    CHAIN_ENV_TYPE_CODE           = 0x000F, /**< ENV device type. */
+    CHAIN_IMU_TYPE_CODE           = 0x0010, /**< IMU device type. */
+    CHAIN_DLIGHT_TYPE_CODE        = 0x0011, /**< DLight device type. */
 } chain_device_type_t;
 
 /**

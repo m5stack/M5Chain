@@ -21,6 +21,9 @@
 #include "ChainMIC/ChainMIC.hpp"
 #include "ChainBuzzer/ChainBuzzer.hpp"
 #include "Unit8Servos2Chain/Unit8Servos2Chain.hpp"
+#include "ChainDLight/ChainDLight.hpp"
+#include "ChainENV/ChainENV.hpp"
+#include "ChainIMU/ChainIMU.hpp"
 
 class Chain : virtual public ChainCommon,
               virtual public ChainJoystick,
@@ -35,6 +38,9 @@ class Chain : virtual public ChainCommon,
               virtual public ChainSwitch,
               virtual public ChainMIC,
               virtual public ChainBuzzer,
+              virtual public ChainDLight,
+              virtual public ChainENV,
+              virtual public ChainIMU,
               virtual public Unit8Servos2Chain {
 public:
 private:
