@@ -232,3 +232,18 @@ https://docs.m5stack.com/en/products/sku/U236
 
 ## License
 - [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
+
+# Chain Pedal
+
+## Overview
+Chain Pedal is a single footswitch input node in the M5Stack Chain series. It supports single-click and switch modes, button and switch status queries, configurable active event reporting, and long-press entry into configuration mode. Four RGB LEDs provide programmable color output and optional button-state overlay indicators.
+
+Chain Pedal uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can be connected with additional Chain series devices to build interactive control and automation applications. It is suitable for foot controls, human-machine interfaces, music controllers, and smart home interaction.
+
+### SKU: U239
+
+## Related Link
+https://docs.m5stack.com/en/products/sku/U239
+
+## License
+- [MIT](https://github.com/m5stack/M5Chain/blob/main/LICENSE)
