@@ -176,15 +176,15 @@ typedef enum {
  * @brief Chain device type enumeration.
  */
 typedef enum {
-    CHAIN_UNKNOWN_TYPE_CODE  = 0x0000, /**< Unknown device type. */
-    CHAIN_ENCODER_TYPE_CODE  = 0x0001, /**< Encoder device type. */
-    CHAIN_ANGLE_TYPE_CODE    = 0x0002, /**< Angle device type. */
-    CHAIN_KEY_TYPE_CODE      = 0x0003, /**< Key device type. */
-    CHAIN_JOYSTICK_TYPE_CODE = 0x0004, /**< Joystick device type. */
-    CHAIN_TOF_TYPE_CODE      = 0x0005, /**< TOF device type. */
-    UNIT_CHAIN_BUS_TYPE_CODE = 0x0006, /**< Unit Chain Bus device type. */
-    CHAIN_SWITCH_TYPE_CODE   = 0x0007, /**< Switch device type. */
-    // CHAIN_PEDAL_TYPE_CODE    = 0x0008, /**< Pedal device type. */
+    CHAIN_UNKNOWN_TYPE_CODE       = 0x0000, /**< Unknown device type. */
+    CHAIN_ENCODER_TYPE_CODE       = 0x0001, /**< Encoder device type. */
+    CHAIN_ANGLE_TYPE_CODE         = 0x0002, /**< Angle device type. */
+    CHAIN_KEY_TYPE_CODE           = 0x0003, /**< Key device type. */
+    CHAIN_JOYSTICK_TYPE_CODE      = 0x0004, /**< Joystick device type. */
+    CHAIN_TOF_TYPE_CODE           = 0x0005, /**< TOF device type. */
+    UNIT_CHAIN_BUS_TYPE_CODE      = 0x0006, /**< Unit Chain Bus device type. */
+    CHAIN_SWITCH_TYPE_CODE        = 0x0007, /**< Switch device type. */
+    CHAIN_PEDAL_TYPE_CODE         = 0x0008, /**< Pedal device type. */
     CHAIN_PIR_TYPE_CODE           = 0x0009, /**< PIR device type. */
     CHAIN_MIC_TYPE_CODE           = 0x000A, /**< Microphone device type. */
     CHAIN_BUZZER_TYPE_CODE        = 0x000B, /**< Buzzer device type. */

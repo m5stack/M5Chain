@@ -24,6 +24,7 @@
 #include "ChainDLight/ChainDLight.hpp"
 #include "ChainENV/ChainENV.hpp"
 #include "ChainIMU/ChainIMU.hpp"
+#include "ChainPedal/ChainPedal.hpp"
 
 class Chain : virtual public ChainCommon,
               virtual public ChainJoystick,
@@ -41,6 +42,7 @@ class Chain : virtual public ChainCommon,
               virtual public ChainDLight,
               virtual public ChainENV,
               virtual public ChainIMU,
+              virtual public ChainPedal,
               virtual public Unit8Servos2Chain {
 public:
 private:
