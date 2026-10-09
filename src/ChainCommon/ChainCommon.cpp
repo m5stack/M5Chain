@@ -167,7 +167,12 @@ bool ChainCommon::processBufferData(uint16_t id, uint8_t cmd)
             uint16_t length = (uint16_t)receiveBuffer[startIndex + 2] | ((uint16_t)receiveBuffer[startIndex + 3] << 8);
 
             // Calculate total packet size: header(2) + length(2) + payload(length) + footer(2)
-            uint16_t packetSize = 4 + length + 2;
+            uint32_t packetSize = uint32_t(length) + 6;
+            // Corrupted lengths must not pin the parser behind an impossible frame.
+            if (packetSize < PACK_SIZE_MIN || packetSize > sizeof(returnPacket)) {
+                ++startIndex;
+                continue;
+            }
 
             // Check if full packet data is available in buffer
             if ((receiveBufferSize - startIndex) < packetSize) {
@@ -236,20 +241,58 @@ bool ChainCommon::processBufferData(uint16_t id, uint8_t cmd)
         }
     }
 
+    if (startIndex > 0) {
+        memmove(receiveBuffer, receiveBuffer + startIndex, receiveBufferSize - startIndex);
+        receiveBufferSize -= startIndex;
+    }
     return packetFound;
 }
 
 void ChainCommon::processIncomingData(void)
 {
-    if (available() > 0) {
+    if (serialPort != nullptr && available() > 0) {
         readBuffer();
         processBufferData();
     }
 }
 
+bool ChainCommon::popActiveRecord(uint8_t id, uint16_t *rawType)
+{
+    if (rawType == nullptr || !acquireMutex()) {
+        return false;
+    }
+
+    // Drain the UART once before looking at the linked-list queue.  This keeps
+    // unsolicited 0xE0 records captured even when no typed trigger helper is
+    // called during the current loop iteration.
+    processIncomingData();
+    record_info_t result{};
+    const bool found = findRecord(&recordList, id, &result);
+    if (found) {
+        *rawType = result.type;
+    }
+    releaseMutex();
+    return found;
+}
+
+void ChainCommon::discardActiveRecords()
+{
+    if (!acquireMutex()) {
+        return;
+    }
+    processIncomingData();
+    while (recordList.head != nullptr) {
+        record_node_t *node = recordList.head;
+        recordList.head     = node->next;
+        free(node);
+    }
+    recordList.count = 0;
+    releaseMutex();
+}
+
 bool ChainCommon::available(void)
 {
-    return serialPort->available() > 0;
+    return serialPort != nullptr && serialPort->available() > 0;
 }
 
 void ChainCommon::readBuffer(void)
@@ -423,7 +466,7 @@ chain_status_t ChainCommon::getUID(uint16_t id, uid_type_t uidType, uint8_t *uid
     chain_status_t status = CHAIN_OK;
 
     uint8_t expectedSize = (uidType == UID_TYPE_4_BYTE) ? 4 : 12;
-    if (size < expectedSize) {
+    if (!uid || !operationStatus || (uidType != UID_TYPE_4_BYTE && uidType != UID_TYPE_12_BYTE) || size < expectedSize) {
         return CHAIN_PARAMETER_ERROR;
     }
 
@@ -432,13 +475,11 @@ chain_status_t ChainCommon::getUID(uint16_t id, uid_type_t uidType, uint8_t *uid
         cmdBuffer[cmdBufferSize++] = static_cast<uint8_t>(uidType);
         sendPacket(id, CHAIN_GET_UID, cmdBuffer, cmdBufferSize);
         if (waitForData(id, CHAIN_GET_UID, timeout)) {
-            if (checkPacket(returnPacket, returnPacketSize)) {
+            if (checkPacket(returnPacket, returnPacketSize) && returnPacketSize >= 10 &&
+                ((returnPacket[6] == 1 && returnPacketSize == 10 + expectedSize) ||
+                 (returnPacket[6] == 0 && (returnPacketSize == 10 || returnPacketSize == 10 + expectedSize)))) {
                 *operationStatus = returnPacket[6];
-                if (*operationStatus == 1) {
-                    for (uint8_t i = 0; i < expectedSize; i++) {
-                        uid[i] = returnPacket[7 + i];
-                    }
-                }
+                if (*operationStatus == 1) memcpy(uid, returnPacket + 7, expectedSize);
             } else {
                 status = CHAIN_RETURN_PACKET_ERROR;
             }
