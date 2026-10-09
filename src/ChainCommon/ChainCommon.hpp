@@ -34,6 +34,8 @@
  */
 #define CMD_BUFFER_SIZE (256)
 
+#define CHAIN_SCROLL_TEXT_MAX_LENGTH (32)
+
 /**
  * @brief High byte of the data packet header.
  */
@@ -239,6 +241,22 @@ typedef struct {
 } record_list_t;
 
 class ChainCommon {
+public:
+    /**
+     * Remove one active (unsolicited) packet from the receive queue.
+     *
+     * Chain devices report trigger/interrupt packets with command 0xE0.  The
+     * original typed get*Trigger helpers consume those records, which makes it
+     * impossible for an application to retain the original event code.  This
+     * accessor exposes the record queue without changing the existing helpers.
+     * `rawType` is the little-endian 16-bit value carried by bytes 6 and 7 of
+     * the packet; callers can persist it alongside the decoded event.
+     */
+    bool popActiveRecord(uint8_t id, uint16_t *rawType);
+
+    /** Discard queued unsolicited records when a UART/Chain session resets. */
+    void discardActiveRecords();
+
 protected:
     // Command buffer
     uint8_t cmdBuffer[CMD_BUFFER_SIZE] = {0};  // Buffer used to store commands that are to be sent.
@@ -350,7 +368,7 @@ protected:
     bool waitForData(uint16_t id, uint8_t cmd, uint32_t timeout);
 
 private:
-    HardwareSerial *serialPort;
+    HardwareSerial *serialPort = nullptr;
     bool mutexLocked = false;
     // Receive data buffer
     uint8_t receiveBuffer[RECEIVE_BUFFER_SIZE] = {0};  // Buffer used for storing received data.

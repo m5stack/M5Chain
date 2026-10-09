@@ -251,12 +251,12 @@ chain_status_t ChainMono::setMonoStringScroll(uint8_t id, const char *string, mo
 {
     chain_status_t status = CHAIN_OK;
 
-    if (!string) {
+    if (!string || !operationStatus) {
         return CHAIN_PARAMETER_ERROR;
     }
 
     size_t length              = strlen(string);
-    const size_t maxTextLength = SEND_BUFFER_SIZE - 9 - 4;  // send packet overhead + scroll config bytes
+    const size_t maxTextLength = CHAIN_SCROLL_TEXT_MAX_LENGTH;
     if (length > maxTextLength) {
         return CHAIN_PARAMETER_ERROR;
     }
@@ -276,7 +276,7 @@ chain_status_t ChainMono::setMonoStringScroll(uint8_t id, const char *string, mo
         sendPacket(id, CHAIN_MONO_SET_SCROLL_TEXT, cmdBuffer, cmdBufferSize);
 
         if (waitForData(id, CHAIN_MONO_SET_SCROLL_TEXT, timeout)) {
-            if (checkPacket(returnPacket, returnPacketSize)) {
+            if (returnPacketSize == 10 && checkPacket(returnPacket, returnPacketSize)) {
                 *operationStatus = returnPacket[6];
             } else {
                 status = CHAIN_RETURN_PACKET_ERROR;
@@ -298,11 +298,14 @@ chain_status_t ChainMono::getMonoStringScroll(uint8_t id, char *string, mono_scr
 {
     chain_status_t status = CHAIN_OK;
 
+    if (!string || !dir || !mode || !IntervalMs) return CHAIN_PARAMETER_ERROR;
+
     if (acquireMutex()) {
         cmdBufferSize = 0;
         sendPacket(id, CHAIN_MONO_GET_SCROLL_TEXT, cmdBuffer, cmdBufferSize);
         if (waitForData(id, CHAIN_MONO_GET_SCROLL_TEXT, timeout)) {
-            if (checkPacket(returnPacket, returnPacketSize)) {
+            if (checkPacket(returnPacket, returnPacketSize) && returnPacketSize >= 13 &&
+                returnPacket[9] <= CHAIN_SCROLL_TEXT_MAX_LENGTH && returnPacketSize == 13 + returnPacket[9]) {
                 *dir           = (mono_scroll_dir_t)((returnPacket[6] >> 4) & 0x0F);
                 *mode          = (mono_scroll_mode_t)(returnPacket[6] & 0x0F);
                 *IntervalMs    = (uint16_t)(returnPacket[7] | (returnPacket[8] << 8));
@@ -310,6 +313,7 @@ chain_status_t ChainMono::getMonoStringScroll(uint8_t id, char *string, mono_scr
                 for (int i = 0; i < length; i++) {
                     string[i] = returnPacket[10 + i];
                 }
+                string[length] = '\0';
 
             } else {
                 status = CHAIN_RETURN_PACKET_ERROR;
@@ -330,12 +334,14 @@ chain_status_t ChainMono::setMonoStringScrollState(uint8_t id, mono_scroll_state
 {
     chain_status_t status = CHAIN_OK;
 
+    if (!operationStatus || state > MONO_SCROLL_STATE_IDLE) return CHAIN_PARAMETER_ERROR;
+
     if (acquireMutex()) {
         cmdBufferSize              = 0;
         cmdBuffer[cmdBufferSize++] = (uint8_t)state;
         sendPacket(id, CHAIN_MONO_SET_SCROLL_TEXT_STATE, cmdBuffer, cmdBufferSize);
         if (waitForData(id, CHAIN_MONO_SET_SCROLL_TEXT_STATE, timeout)) {
-            if (checkPacket(returnPacket, returnPacketSize)) {
+            if (returnPacketSize == 10 && checkPacket(returnPacket, returnPacketSize)) {
                 *operationStatus = returnPacket[6];
             } else {
                 status = CHAIN_RETURN_PACKET_ERROR;
@@ -355,11 +361,13 @@ chain_status_t ChainMono::getMonoStringScrollState(uint8_t id, mono_scroll_state
 {
     chain_status_t status = CHAIN_OK;
 
+    if (!state) return CHAIN_PARAMETER_ERROR;
+
     if (acquireMutex()) {
         cmdBufferSize = 0;
         sendPacket(id, CHAIN_MONO_GET_SCROLL_TEXT_STATE, cmdBuffer, cmdBufferSize);
         if (waitForData(id, CHAIN_MONO_GET_SCROLL_TEXT_STATE, timeout)) {
-            if (checkPacket(returnPacket, returnPacketSize)) {
+            if (returnPacketSize == 10 && checkPacket(returnPacket, returnPacketSize)) {
                 *state = (mono_scroll_state_t)returnPacket[6];
             } else {
                 status = CHAIN_RETURN_PACKET_ERROR;

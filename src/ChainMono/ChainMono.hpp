@@ -241,7 +241,7 @@ public:
      * @brief Gets the current scroll text parameters from the Mono device.
      *
      * @param id Device position in the chain (starting from 1).
-     * @param string Pointer to store the current scroll text.
+     * @param string Pointer to store the current scroll text (at least 33 bytes, including '\0').
      * @param dir Pointer to store the current scroll direction.
      * @param mode Pointer to store the current scroll mode.
      * @param IntervalMs Pointer to store the current scroll interval in milliseconds per step.
