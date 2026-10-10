@@ -1,6 +1,6 @@
 {
   "name": "M5Chain",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Arduino library for M5Stack Chain devices.",
   "keywords": [
     "M5Stack",

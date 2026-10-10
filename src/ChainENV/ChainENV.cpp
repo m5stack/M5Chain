@@ -326,11 +326,18 @@ chain_status_t ChainENV::getSPA06PressureRate(uint8_t id, chain_env_spa06_rate_t
 }
 
 chain_status_t ChainENV::setSPA06SeaLevelPressure(uint8_t id, uint16_t pressure, uint8_t *operationStatus,
-                                                  unsigned long timeout)
+                                                  chain_save_flash_t saveToFlash, unsigned long timeout)
 {
     chain_status_t status = CHAIN_OK;
 
-    if (operationStatus == nullptr || pressure == 0) {
+    if (operationStatus == nullptr) {
+        return CHAIN_PARAMETER_ERROR;
+    }
+
+    *operationStatus = 0;
+
+    if (pressure < CHAIN_ENV_SEA_LEVEL_PRESSURE_MIN_HPA_X10 || pressure > CHAIN_ENV_SEA_LEVEL_PRESSURE_MAX_HPA_X10 ||
+        saveToFlash > CHAIN_SAVE_FLASH_ENABLE) {
         return CHAIN_PARAMETER_ERROR;
     }
 
@@ -338,6 +345,7 @@ chain_status_t ChainENV::setSPA06SeaLevelPressure(uint8_t id, uint16_t pressure,
         cmdBufferSize = 0;
         writeU16LE(&cmdBuffer[cmdBufferSize], pressure);
         cmdBufferSize += 2;
+        cmdBuffer[cmdBufferSize++] = saveToFlash;
         sendPacket(id, CHAIN_ENV_SET_SPA06_SEA_LEVEL_PRESSURE, cmdBuffer, cmdBufferSize);
 
         if (waitForData(id, CHAIN_ENV_SET_SPA06_SEA_LEVEL_PRESSURE, timeout)) {
@@ -372,6 +380,46 @@ chain_status_t ChainENV::getSPA06SeaLevelPressure(uint8_t id, uint16_t *pressure
         if (waitForData(id, CHAIN_ENV_GET_SPA06_SEA_LEVEL_PRESSURE, timeout)) {
             if (checkPacket(returnPacket, returnPacketSize) && returnPacketSize == 11) {
                 *pressure = readU16LE(&returnPacket[6]);
+            } else {
+                status = CHAIN_RETURN_PACKET_ERROR;
+            }
+        } else {
+            status = CHAIN_TIMEOUT;
+        }
+        releaseMutex();
+    } else {
+        status = CHAIN_BUSY;
+    }
+
+    return status;
+}
+
+chain_status_t ChainENV::calibrateSPA06SeaLevelPressure(uint8_t id, int32_t referenceAltitudeCm,
+                                                        uint8_t *operationStatus, chain_save_flash_t saveToFlash,
+                                                        unsigned long timeout)
+{
+    chain_status_t status = CHAIN_OK;
+
+    if (operationStatus == nullptr) {
+        return CHAIN_PARAMETER_ERROR;
+    }
+
+    *operationStatus = 0;
+
+    if (saveToFlash > CHAIN_SAVE_FLASH_ENABLE || timeout < CHAIN_ENV_CALIBRATION_MIN_TIMEOUT_MS) {
+        return CHAIN_PARAMETER_ERROR;
+    }
+
+    if (acquireMutex()) {
+        cmdBufferSize = 0;
+        writeI32LE(&cmdBuffer[cmdBufferSize], referenceAltitudeCm);
+        cmdBufferSize += 4;
+        cmdBuffer[cmdBufferSize++] = saveToFlash;
+        sendPacket(id, CHAIN_ENV_CALIBRATE_SPA06_SEA_LEVEL_PRESSURE, cmdBuffer, cmdBufferSize);
+
+        if (waitForData(id, CHAIN_ENV_CALIBRATE_SPA06_SEA_LEVEL_PRESSURE, timeout)) {
+            if (checkPacket(returnPacket, returnPacketSize) && returnPacketSize == 10) {
+                *operationStatus = returnPacket[6];
             } else {
                 status = CHAIN_RETURN_PACKET_ERROR;
             }

@@ -1,5 +1,5 @@
 /*
- *SPDX-FileCopyrightText: 2026 M5Stack Technology CO LTD
+ *SPDX-FileCopyrightText: 2025 M5Stack Technology CO LTD
  *
  *SPDX-License-Identifier: MIT
  */
@@ -222,7 +222,7 @@ void setup()
 
                 operation_status = 0;
                 chain_status = M5Chain.setSPA06SeaLevelPressure(devices_list->devices[i].id, env_sea_level_pressure_x10,
-                                                                &operation_status);
+                                                                &operation_status, CHAIN_SAVE_FLASH_ENABLE);
                 if (chain_status == CHAIN_OK && operation_status) {
                     Serial.printf("ID[%d] set spa06 sea level pressure success\r\n", devices_list->devices[i].id);
                 } else {
