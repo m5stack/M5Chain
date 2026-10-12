@@ -369,7 +369,7 @@ protected:
 
 private:
     HardwareSerial *serialPort = nullptr;
-    bool mutexLocked = false;
+    bool mutexLocked           = false;
     // Receive data buffer
     uint8_t receiveBuffer[RECEIVE_BUFFER_SIZE] = {0};  // Buffer used for storing received data.
     uint16_t receiveBufferSize                 = 0;    // Length of the data stored in the receive buffer.

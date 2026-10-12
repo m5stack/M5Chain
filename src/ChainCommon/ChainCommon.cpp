@@ -466,7 +466,8 @@ chain_status_t ChainCommon::getUID(uint16_t id, uid_type_t uidType, uint8_t *uid
     chain_status_t status = CHAIN_OK;
 
     uint8_t expectedSize = (uidType == UID_TYPE_4_BYTE) ? 4 : 12;
-    if (!uid || !operationStatus || (uidType != UID_TYPE_4_BYTE && uidType != UID_TYPE_12_BYTE) || size < expectedSize) {
+    if (!uid || !operationStatus || (uidType != UID_TYPE_4_BYTE && uidType != UID_TYPE_12_BYTE) ||
+        size < expectedSize) {
         return CHAIN_PARAMETER_ERROR;
     }
 
