@@ -195,6 +195,15 @@ Chain ENV is an environmental sensing node in the M5Stack Chain series. It integ
 
 Chain ENV uses a UART serial daisy-chain communication protocol. Through two HY2.0-4P expansion interfaces, it can be connected with additional Chain series devices to build environmental monitoring and automation applications. It is suitable for weather stations, indoor environment monitoring, smart agriculture, and altitude-aware devices.
 
+### Altitude Calibration
+
+The built-in SPA06 pressure sensor has been factory calibrated. However, accurate altitude calculation also depends on the local sea-level pressure at the installation location. If you need accurate altitude readings, perform the calibration according to your use case before normal operation:
+
+- Use [ENV_Calibrate_By_Altitude](examples/ENV_Example/ENV_Calibrate/ENV_Calibrate_By_Altitude/env_calibrate_by_altitude.ino) when the known reference altitude of the sensor location is available but the local sea-level pressure is unknown. The firmware samples the pressure several times, calculates the sea-level pressure, and saves it to Flash.
+- Use [ENV_Calibrate_By_pressure](examples/ENV_Example/ENV_Calibrate/ENV_Calibrate_By_pressure/env_calibrate_by_pressure.ino) when the current local sea-level pressure is already known from a reliable source. The example writes the known pressure to the device and saves it to Flash.
+
+Both examples configure the sea-level pressure used for altitude calculation. They do not recalibrate the internal SPA06 pressure-sensor coefficients. Avoid repeated Flash writes during normal operation.
+
 ### SKU: U234
 
 ## Related Link

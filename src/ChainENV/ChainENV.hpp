@@ -12,7 +12,10 @@
 /**
  * @brief Maximum size for Chain ENV I2C read/write operations.
  */
-#define CHAIN_ENV_I2C_MAX_SIZE (32)
+#define CHAIN_ENV_I2C_MAX_SIZE                   (32)
+#define CHAIN_ENV_SEA_LEVEL_PRESSURE_MIN_HPA_X10 (3000)
+#define CHAIN_ENV_SEA_LEVEL_PRESSURE_MAX_HPA_X10 (11000)
+#define CHAIN_ENV_CALIBRATION_MIN_TIMEOUT_MS     (5000)
 
 #define CHAIN_ENV_EVENT_TRIGGER_REPORT_TYPE     (0x0F00)
 #define CHAIN_ENV_EVENT_TRIGGER_REPORT_MASK     (0xFF00)
@@ -76,27 +79,28 @@
  * This enumeration defines command codes for various operations of the CHAIN_ENV device.
  */
 typedef enum {
-    CHAIN_ENV_I2C_MEM_READ                      = 0x13, /**< Read data from specific address on I2C device. */
-    CHAIN_ENV_I2C_MEM_WRITE                     = 0x14, /**< Write data to specific address on I2C device. */
-    CHAIN_ENV_GET_AHT20_DATA                    = 0x30, /**< Get AHT20 temperature and humidity. */
-    CHAIN_ENV_GET_SPA06_DATA                    = 0x31, /**< Get SPA06 temperature, pressure and altitude. */
-    CHAIN_ENV_SET_SPA06_TEMPERATURE_RATE        = 0x32, /**< Set SPA06 temperature measurement rate. */
-    CHAIN_ENV_GET_SPA06_TEMPERATURE_RATE        = 0x33, /**< Get SPA06 temperature measurement rate. */
-    CHAIN_ENV_SET_SPA06_PRESSURE_RATE           = 0x34, /**< Set SPA06 pressure measurement rate. */
-    CHAIN_ENV_GET_SPA06_PRESSURE_RATE           = 0x35, /**< Get SPA06 pressure measurement rate. */
-    CHAIN_ENV_SET_SPA06_SEA_LEVEL_PRESSURE      = 0x36, /**< Set SPA06 sea-level pressure for altitude calculation. */
-    CHAIN_ENV_GET_SPA06_SEA_LEVEL_PRESSURE      = 0x37, /**< Get SPA06 sea-level pressure for altitude calculation. */
-    CHAIN_ENV_REPORT_ENV_CHANGE                 = 0xE0, /**< ENV change warning auto-report packet. */
-    CHAIN_ENV_SET_CHANGE_EVENT_TRIGGER          = 0xE1, /**< Set ENV change warning auto-report mode. */
-    CHAIN_ENV_GET_CHANGE_EVENT_TRIGGER          = 0xE2, /**< Get ENV change warning auto-report mode. */
-    CHAIN_ENV_SET_TEMPERATURE_WARNING_THRESHOLD = 0xE3, /**< Set temperature warning thresholds. */
-    CHAIN_ENV_GET_TEMPERATURE_WARNING_THRESHOLD = 0xE4, /**< Get temperature warning thresholds. */
-    CHAIN_ENV_SET_HUMIDITY_WARNING_THRESHOLD    = 0xE5, /**< Set humidity warning thresholds. */
-    CHAIN_ENV_GET_HUMIDITY_WARNING_THRESHOLD    = 0xE6, /**< Get humidity warning thresholds. */
-    CHAIN_ENV_SET_PRESSURE_WARNING_THRESHOLD    = 0xE7, /**< Set pressure warning thresholds. */
-    CHAIN_ENV_GET_PRESSURE_WARNING_THRESHOLD    = 0xE8, /**< Get pressure warning thresholds. */
-    CHAIN_ENV_SET_ALTITUDE_WARNING_THRESHOLD    = 0xE9, /**< Set altitude warning thresholds. */
-    CHAIN_ENV_GET_ALTITUDE_WARNING_THRESHOLD    = 0xEA, /**< Get altitude warning thresholds. */
+    CHAIN_ENV_I2C_MEM_READ                       = 0x13, /**< Read data from specific address on I2C device. */
+    CHAIN_ENV_I2C_MEM_WRITE                      = 0x14, /**< Write data to specific address on I2C device. */
+    CHAIN_ENV_GET_AHT20_DATA                     = 0x30, /**< Get AHT20 temperature and humidity. */
+    CHAIN_ENV_GET_SPA06_DATA                     = 0x31, /**< Get SPA06 temperature, pressure and altitude. */
+    CHAIN_ENV_SET_SPA06_TEMPERATURE_RATE         = 0x32, /**< Set SPA06 temperature measurement rate. */
+    CHAIN_ENV_GET_SPA06_TEMPERATURE_RATE         = 0x33, /**< Get SPA06 temperature measurement rate. */
+    CHAIN_ENV_SET_SPA06_PRESSURE_RATE            = 0x34, /**< Set SPA06 pressure measurement rate. */
+    CHAIN_ENV_GET_SPA06_PRESSURE_RATE            = 0x35, /**< Get SPA06 pressure measurement rate. */
+    CHAIN_ENV_SET_SPA06_SEA_LEVEL_PRESSURE       = 0x36, /**< Set SPA06 sea-level pressure for altitude calculation. */
+    CHAIN_ENV_GET_SPA06_SEA_LEVEL_PRESSURE       = 0x37, /**< Get SPA06 sea-level pressure for altitude calculation. */
+    CHAIN_ENV_CALIBRATE_SPA06_SEA_LEVEL_PRESSURE = 0x38, /**< Calibrate sea-level pressure from reference altitude. */
+    CHAIN_ENV_REPORT_ENV_CHANGE                  = 0xE0, /**< ENV change warning auto-report packet. */
+    CHAIN_ENV_SET_CHANGE_EVENT_TRIGGER           = 0xE1, /**< Set ENV change warning auto-report mode. */
+    CHAIN_ENV_GET_CHANGE_EVENT_TRIGGER           = 0xE2, /**< Get ENV change warning auto-report mode. */
+    CHAIN_ENV_SET_TEMPERATURE_WARNING_THRESHOLD  = 0xE3, /**< Set temperature warning thresholds. */
+    CHAIN_ENV_GET_TEMPERATURE_WARNING_THRESHOLD  = 0xE4, /**< Get temperature warning thresholds. */
+    CHAIN_ENV_SET_HUMIDITY_WARNING_THRESHOLD     = 0xE5, /**< Set humidity warning thresholds. */
+    CHAIN_ENV_GET_HUMIDITY_WARNING_THRESHOLD     = 0xE6, /**< Get humidity warning thresholds. */
+    CHAIN_ENV_SET_PRESSURE_WARNING_THRESHOLD     = 0xE7, /**< Set pressure warning thresholds. */
+    CHAIN_ENV_GET_PRESSURE_WARNING_THRESHOLD     = 0xE8, /**< Get pressure warning thresholds. */
+    CHAIN_ENV_SET_ALTITUDE_WARNING_THRESHOLD     = 0xE9, /**< Set altitude warning thresholds. */
+    CHAIN_ENV_GET_ALTITUDE_WARNING_THRESHOLD     = 0xEA, /**< Get altitude warning thresholds. */
 
     CHAIN_ENV_GET_TEMPERATURE_DATA = CHAIN_ENV_GET_AHT20_DATA, /**< Legacy alias. */
     CHAIN_ENV_GET_HUMIDITY_DATA    = CHAIN_ENV_GET_AHT20_DATA, /**< Legacy alias. */
@@ -159,8 +163,7 @@ public:
      * @param regAddr Register address to start reading from.
      * @param regLength Length of the register address.
      * @param readLength Number of bytes to read, must not exceed `CHAIN_ENV_I2C_MAX_SIZE` (32 bytes).
-     * @param
-     * buffer Pointer to the buffer where the read data will be stored.
+     * @param buffer Pointer to the buffer where the read data will be stored.
      * @param operationStatus Pointer to store the operation result (1: success, 0: failure).
      * @param timeout The timeout duration for the operation in milliseconds (default is 100ms).
      *
@@ -178,10 +181,8 @@ public:
      * @param regAddr Register address to write data to.
      * @param regLength Length of the register address.
      * @param writeLength Number of bytes to write, must not exceed `CHAIN_ENV_I2C_MAX_SIZE` (32 bytes).
-     * For
-     * SPA06, do not frequently modify sampling configuration registers through this API.
-     * @param buffer Pointer
-     * to the buffer containing the data to be written.
+     *                  For SPA06, do not frequently modify sampling configuration registers through this API.
+     * @param buffer Pointer to the buffer containing the data to be written.
      * @param operationStatus Pointer to store the operation result (1: success, 0: failure).
      * @param timeout The timeout duration for the operation in milliseconds (default is 100ms).
      *
@@ -226,14 +227,30 @@ public:
 
     /**
      * @brief Sets the SPA06 sea-level pressure used for altitude calculation, in hPa x10.
+     * @param saveToFlash Whether to save the setting to flash memory.
+     * @param operationStatus Set to 1 when the ENV firmware succeeds, or 0 when it rejects or cannot complete the
+     * operation.
      */
     chain_status_t setSPA06SeaLevelPressure(uint8_t id, uint16_t pressure, uint8_t *operationStatus,
-                                            unsigned long timeout = 100);
+                                            chain_save_flash_t saveToFlash = CHAIN_SAVE_FLASH_DISABLE,
+                                            unsigned long timeout          = 100);
 
     /**
      * @brief Gets the SPA06 sea-level pressure used for altitude calculation, in hPa x10.
      */
     chain_status_t getSPA06SeaLevelPressure(uint8_t id, uint16_t *pressure, unsigned long timeout = 100);
+
+    /**
+     * @brief Calibrates SPA06 sea-level pressure from a known reference altitude in centimeters.
+     * @param referenceAltitudeCm Known altitude of the sensor, in centimeters.
+     * @param operationStatus Set to 1 when calibration succeeds, or 0 when sensor sampling, range validation, or Flash
+     * saving fails.
+     * @param saveToFlash Whether to save the calculated pressure to flash memory.
+     * @param timeout The timeout duration, which must be at least 5000 ms because calibration takes about 4 seconds.
+     */
+    chain_status_t calibrateSPA06SeaLevelPressure(uint8_t id, int32_t referenceAltitudeCm, uint8_t *operationStatus,
+                                                  chain_save_flash_t saveToFlash = CHAIN_SAVE_FLASH_DISABLE,
+                                                  unsigned long timeout          = 10000);
 
     /**
      * @brief Sets ENV change warning auto-reporting mask (bit0: temp, bit1: humi, bit2: press, bit3: alti).
