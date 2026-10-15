@@ -196,6 +196,7 @@ typedef enum {
     CHAIN_ENV_TYPE_CODE           = 0x000F, /**< ENV device type. */
     CHAIN_IMU_TYPE_CODE           = 0x0010, /**< IMU device type. */
     CHAIN_DLIGHT_TYPE_CODE        = 0x0011, /**< DLight device type. */
+    CHAIN_4RELAY_TYPE_CODE        = 0x0012, /**< 4Relay device type. */
 } chain_device_type_t;
 
 /**
@@ -245,12 +246,17 @@ public:
     /**
      * Remove one active (unsolicited) packet from the receive queue.
      *
-     * Chain devices report trigger/interrupt packets with command 0xE0.  The
-     * original typed get*Trigger helpers consume those records, which makes it
+     * Chain devices report
+     * trigger/interrupt packets with command 0xE0.  The
+     * original typed get*Trigger helpers consume those
+     * records, which makes it
      * impossible for an application to retain the original event code.  This
+     *
      * accessor exposes the record queue without changing the existing helpers.
-     * `rawType` is the little-endian 16-bit value carried by bytes 6 and 7 of
+     * `rawType` is the little-endian
+     * 16-bit value carried by bytes 6 and 7 of
      * the packet; callers can persist it alongside the decoded event.
+
      */
     bool popActiveRecord(uint8_t id, uint16_t *rawType);
 

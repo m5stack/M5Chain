@@ -21,7 +21,8 @@
     "Unit8Servos2Chain",
     "DLight",
     "ENV",
-    "IMU"
+    "IMU",
+    "Chain4Relay"
   ],
   "repository": {
     "type": "git",
@@ -60,7 +61,8 @@
       "-Isrc/Unit8Servos2Chain",
       "-Isrc/ChainDLight",
       "-Isrc/ChainENV",
-      "-Isrc/ChainIMU"
+      "-Isrc/ChainIMU",
+      "-Isrc/Chain4Relay"
     ]
   },
   "headers": [

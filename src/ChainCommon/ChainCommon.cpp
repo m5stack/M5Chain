@@ -168,6 +168,7 @@ bool ChainCommon::processBufferData(uint16_t id, uint8_t cmd)
 
             // Calculate total packet size: header(2) + length(2) + payload(length) + footer(2)
             uint32_t packetSize = uint32_t(length) + 6;
+
             // Corrupted lengths must not pin the parser behind an impossible frame.
             if (packetSize < PACK_SIZE_MIN || packetSize > sizeof(returnPacket)) {
                 ++startIndex;
@@ -245,6 +246,7 @@ bool ChainCommon::processBufferData(uint16_t id, uint8_t cmd)
         memmove(receiveBuffer, receiveBuffer + startIndex, receiveBufferSize - startIndex);
         receiveBufferSize -= startIndex;
     }
+
     return packetFound;
 }
 

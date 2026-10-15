@@ -1,5 +1,5 @@
 /*
- *SPDX-FileCopyrightText: 2025 M5Stack Technology CO LTD
+ *SPDX-FileCopyrightText: 2026 M5Stack Technology CO LTD
  *
  *SPDX-License-Identifier: MIT
  */
@@ -13,18 +13,19 @@
 #include "ChainAngle/ChainAngle.hpp"
 #include "ChainEncoder/ChainEncoder.hpp"
 #include "ChainToF/ChainToF.hpp"
+#include "ChainSwitch/ChainSwitch.hpp"
+#include "ChainPIR/ChainPIR.hpp"
+#include "ChainMIC/ChainMIC.hpp"
 #include "UnitChainBus/UnitChainBus.hpp"
+#include "Unit8Servos2Chain/Unit8Servos2Chain.hpp"
+#include "ChainBuzzer/ChainBuzzer.hpp"
+#include "ChainPedal/ChainPedal.hpp"
 #include "ChainMono/ChainMono.hpp"
 #include "ChainRGB/ChainRGB.hpp"
-#include "ChainPIR/ChainPIR.hpp"
-#include "ChainSwitch/ChainSwitch.hpp"
-#include "ChainMIC/ChainMIC.hpp"
-#include "ChainBuzzer/ChainBuzzer.hpp"
-#include "Unit8Servos2Chain/Unit8Servos2Chain.hpp"
 #include "ChainDLight/ChainDLight.hpp"
 #include "ChainENV/ChainENV.hpp"
 #include "ChainIMU/ChainIMU.hpp"
-#include "ChainPedal/ChainPedal.hpp"
+#include "Chain4Relay/Chain4Relay.hpp"
 
 class Chain : virtual public ChainCommon,
               virtual public ChainJoystick,
@@ -32,18 +33,19 @@ class Chain : virtual public ChainCommon,
               virtual public ChainAngle,
               virtual public ChainEncoder,
               virtual public ChainToF,
+              virtual public ChainSwitch,
+              virtual public ChainPIR,
+              virtual public ChainMIC,
               virtual public UnitChainBus,
+              virtual public Unit8Servos2Chain,
+              virtual public ChainBuzzer,
               virtual public ChainMono,
               virtual public ChainRGB,
-              virtual public ChainPIR,
-              virtual public ChainSwitch,
-              virtual public ChainMIC,
-              virtual public ChainBuzzer,
+              virtual public ChainPedal,
               virtual public ChainDLight,
               virtual public ChainENV,
               virtual public ChainIMU,
-              virtual public ChainPedal,
-              virtual public Unit8Servos2Chain {
+              virtual public Chain4Relay {
 public:
 private:
 };
